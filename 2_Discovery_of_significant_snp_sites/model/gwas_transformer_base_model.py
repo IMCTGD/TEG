@@ -41,20 +41,20 @@ class PreNorm(nn.Module):
 
 
 def get_pos_embedding(pos_idxs, embedding_dim, device):
-    # 初始化位置编码矩阵,device设置为GPU
+    # Initialize position encoding matrix, device set to GPU
     pos_embeddings = torch.zeros(len(pos_idxs), embedding_dim).to(device)
 
-    # 计算频率
+    # Calculation frequency
     freq = 10000
     for i in tqdm(range(len(pos_idxs)), desc="Processing"):
         pos_idx = pos_idxs[i]
 
         for dim in range(0, embedding_dim, 2):
-            # sin和cos计算
+            # Calculation of sin and cos
             sinusoid = torch.sin(pos_idx / freq ** (dim / embedding_dim))
             cosinusoid = torch.cos(pos_idx / freq ** (dim / embedding_dim))
 
-            # 填充embedding矩阵
+            # Fill the embedding matrix
             pos_embeddings[i, dim] = sinusoid
             pos_embeddings[i, dim + 1] = cosinusoid
 

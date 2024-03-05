@@ -1,7 +1,6 @@
 
 import numpy as np
 from torch.utils.data import TensorDataset, DataLoader, Subset
-# 热编码函数
 
 from collections import defaultdict
 import torch
@@ -34,17 +33,17 @@ def one_hot_encode2(snp):
 
 
 def rename_numbers(input_list):
-    unique_numbers = list(set(input_list))  # 获取列表中唯一的数字
-    unique_numbers.sort()  # 对唯一数字进行排序
+    unique_numbers = list(set(input_list))  # Get the unique number in the list
+    unique_numbers.sort()  # Sorting unique numbers
 
-    number_to_index = {num: index for index, num in enumerate(unique_numbers)}  # 创建数字到索引的映射
+    number_to_index = {num: index for index, num in enumerate(unique_numbers)}  # Creating a number-to-index mapping
 
-    renamed_list = [number_to_index[num] for num in input_list]  # 使用映射将数字重命名
+    renamed_list = [number_to_index[num] for num in input_list]  # Renaming numbers using mapping
     return renamed_list
 
 
 def data_xy_transform_to_tensor(data, chr_num=19):
-    # 提取字符串数据和标签
+    # Extract string data and labels
     snp_data = data[:, :-1]
     index = (chr_num - 1) * 128
     snp_data = snp_data[:, index:(index + 128)]
@@ -52,9 +51,9 @@ def data_xy_transform_to_tensor(data, chr_num=19):
     labels = data[:, -1].astype(int)
     labels = labels.tolist()
     labels = rename_numbers(labels)
-    # 创建一个新的 NumPy 数组来存储编码后的数据
+    # Create a new NumPy array to store the encoded data
     encoded_snp_data = []
-    # 对整个 SNP 数据数组进行编码，并将结果存储在 encoded_snp_data 中
+    # Encodes the entire SNP data array and stores the result in encoded_snp_data
     for i in range(len(snp_data)):
         encoded_snp_data.append([one_hot_encode2(snp) for snp in snp_data[i]])
     encoded_snp_data = np.array(encoded_snp_data)
@@ -64,15 +63,15 @@ def data_xy_transform_to_tensor(data, chr_num=19):
 
 
 def data_xy_transform_to_tensor_all(data):
-    # 提取字符串数据和标签
+    # Extract string data and labels
     snp_data = data[:, :-1]
     snp_data = snp_data.tolist()
     labels = data[:, -1].astype(int)
     labels = labels.tolist()
     labels = rename_numbers(labels)
-    # 创建一个新的 NumPy 数组来存储编码后的数据
+    # Create a new NumPy array to store the encoded data
     encoded_snp_data = []
-    # 对整个 SNP 数据数组进行编码，并将结果存储在 encoded_snp_data 中
+    # Encodes the entire SNP data array and stores the result in encoded_snp_data
     for i in range(len(snp_data)):
         encoded_snp_data.append([one_hot_encode2(snp) for snp in snp_data[i]])
     encoded_snp_data = np.array(encoded_snp_data)
@@ -102,12 +101,12 @@ def createSSSDataset(x_data, y_data, batch_size=42, seed=1, train_ratio=0.6, val
 
     dataset = TensorDataset(x_data, y_data)
     labels = y_data.numpy()
-    # 统计每个类别的样本数量
+    # Counting the number of samples in each category
     label_counts = defaultdict(int)
     for label in labels:
         label_counts[label] += 1
 
-    # 计算每个类别在训练集和验证集中的样本数
+    # Calculate the number of samples for each category in the training and validation sets
     # train_ratio = 0.6
     # val_ratio = 0.2
     # test_ratio = 0.2
@@ -115,7 +114,7 @@ def createSSSDataset(x_data, y_data, batch_size=42, seed=1, train_ratio=0.6, val
     val_samples_per_class = {label: int(count * val_ratio) for label, count in label_counts.items()}
     test_samples_per_class = {label: int(count * test_ratio) for label, count in label_counts.items()}
 
-    # 在每个类别中采样索引
+    # Sample indexes in each category
     train_indices = []
     val_indices = []
     test_indices = []
@@ -135,7 +134,7 @@ def createSSSDataset(x_data, y_data, batch_size=42, seed=1, train_ratio=0.6, val
         val_indices.extend(val_indice)
         test_indices.extend(test_indice)
 
-    # 创建子数据集和数据加载器
+    # Creating subdatasets and data loaders
     print("train_indices:",train_indices)
     print("val_indices:", val_indices)
     print("test_indices:", test_indices)
