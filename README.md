@@ -16,7 +16,7 @@ This analysis process is mainly divided into three steps (the quality control of
 
 ## Model Architecture of the Base Classifier：
 ![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/66b1f975-d29b-4c62-ae3b-1b8e0aa46bbc)
-The input consists of the genotype and the corresponding chromosomal position of each locus for the samples. The genotype input dimension is 40, which is expanded to 512 through word embedding. It is then combined with the transformed positional information and concatenated with a CLS token used for classification. The self-attention mechanism comprises 12 heads with an 8-layer structure. Subsequently, a fully connected layer of 512x2 is employed to generate binary classification probabilities (healthy individuals or patients).
+<br>The input consists of the genotype and the corresponding chromosomal position of each locus for the samples. The genotype input dimension is 40, which is expanded to 512 through word embedding. It is then combined with the transformed positional information and concatenated with a CLS token used for classification. The self-attention mechanism comprises 12 heads with an 8-layer structure. Subsequently, a fully connected layer of 512x2 is employed to generate binary classification probabilities (healthy individuals or patients).<br/>
 
 ## Model Architecture of the Meta-Model:
 ![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/4279fec1-7060-4a46-8c94-dcbe68dbdcd6)
