@@ -20,7 +20,7 @@ This analysis process is mainly divided into three steps (the quality control of
 
 ## Model Architecture of the Meta-Model:
 ![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/4279fec1-7060-4a46-8c94-dcbe68dbdcd6)
-CLS represents the output CLS token from the preceding layer of the fully connected layer in the base classifier. It is combined and inputted into a single layer of fully connected neurons to produce binary classification probabilities(healthy individuals or patients).
+<br>CLS represents the output CLS token from the preceding layer of the fully connected layer in the base classifier. It is combined and inputted into a single layer of fully connected neurons to produce binary classification probabilities(healthy individuals or patients).<br/>
 
 
 ## Requirements
