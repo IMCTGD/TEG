@@ -2,8 +2,11 @@
 ![Python 3.8.18](https://img.shields.io/badge/python-3.8-green.svg?style=plastic)
 ![PyTorch 2.1.2](https://img.shields.io/badge/PyTorch%20-%23EE4C2C.svg?style=plastic)
 
+![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/6b59218d-2f9b-4b54-84c2-cd440bb21582)
+![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/7b4407f7-4e8e-4b36-ade5-a1a6db1e092f)
+[workflowa.pdf](https://github.com/xuanan-zhu/GWAS_transformer/files/14692215/workflowa.pdf)
+[workflowb.pdf](https://github.com/xuanan-zhu/GWAS_transformer/files/14692231/workflowb.pdf)
 
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/613286a8-3c31-48f6-916f-74e3c597839e)
 
 This analysis process is mainly divided into three steps (the quality control of the data must be completed before these three steps),
 1.the first step is to transform the genetic data into features; 
@@ -15,11 +18,15 @@ This analysis process is mainly divided into three steps (the quality control of
 
 
 ## Model Architecture of the Base Classifier：
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/66b1f975-d29b-4c62-ae3b-1b8e0aa46bbc)
+![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/5bfa5053-250d-4f82-9fd6-07cb965b40aa)
+[base_model.pdf](https://github.com/xuanan-zhu/GWAS_transformer/files/14692232/base_model.pdf)
+
 <br>The input consists of the genotype and the corresponding chromosomal position of each locus for the samples. The genotype input dimension is 40, which is expanded to 512 through word embedding. It is then combined with the transformed positional information and concatenated with a CLS token used for classification. The self-attention mechanism comprises 12 heads with an 8-layer structure. Subsequently, a fully connected layer of 512x2 is employed to generate binary classification probabilities (healthy individuals or patients).<br/>
 
 ## Model Architecture of the Meta-Model:
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/4279fec1-7060-4a46-8c94-dcbe68dbdcd6)
+![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/bea58714-8751-4057-8070-32400ac80e8c)
+[meta_model.pdf](https://github.com/xuanan-zhu/GWAS_transformer/files/14692234/meta_model.pdf)
+
 <br>CLS represents the output CLS token from the preceding layer of the fully connected layer in the base classifier. It is combined and inputted into a single layer of fully connected neurons to produce binary classification probabilities(healthy individuals or patients).<br/>
 
 
