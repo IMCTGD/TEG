@@ -53,7 +53,7 @@ pos_data = pos_data.to(device)
 pos_data = get_pos_embedding(pos_data, 512, device= pos_data.device)
 data = np.loadtxt('./data/genetype_f_2_2816.txt', delimiter=' ', dtype=str)
 
-print("he chromosome being tested now is：", chr_num)
+print("the chromosome being tested now is：", chr_num)
 x_data, y_data = data_xy_transform_to_tensor(data, chr_num=chr_num)
 
 # 6. Construct the dataset, keeping the method of dividing the dataset the same as during training

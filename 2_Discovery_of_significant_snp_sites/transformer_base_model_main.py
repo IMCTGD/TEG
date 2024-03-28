@@ -8,7 +8,7 @@ import time
 
 from torch import optim, nn
 from data_loader_tools import *
-from model.clsDNA import clsDNA
+from model.gwas_transformer_base_model import clsDNA
 import numpy as np
 
 
@@ -48,7 +48,7 @@ print("Now datasetx:",datasetX)
 x_data, y_data= data_xy_transform_to_tensor(data, chr_num=chr_num)
 x_data = x_data.to(torch.float32)
 
-from model.clsDNA import get_pos_embedding
+from model.gwas_transformer_base_model import get_pos_embedding
 
 
 chr_pos = np.loadtxt('./data/snp_content_f_3_2816.txt', delimiter=' ', dtype=str)
