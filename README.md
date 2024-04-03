@@ -2,8 +2,6 @@
 ![Python 3.8.18](https://img.shields.io/badge/python-3.8-green.svg?style=plastic)
 ![PyTorch 2.1.2](https://img.shields.io/badge/PyTorch%20-%23EE4C2C.svg?style=plastic)
 
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/6b59218d-2f9b-4b54-84c2-cd440bb21582)
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/7b4407f7-4e8e-4b36-ade5-a1a6db1e092f)
 ![workflowa](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/b931a682-4276-4242-ac1b-6b92b86b9b95)
 ![workflowb](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/0a2adc87-cd20-4d73-aa7d-ddb2f3cf544d)
 
