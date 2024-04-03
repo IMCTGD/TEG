@@ -1,4 +1,4 @@
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/7352a7d1-457a-4156-8021-e6d367c9ffe9)# GWATransFormEnsemble: GWAS-based transformer and integrated learning to analyze genetic data to identify significant SNP loci and biological pathways
+# GWATransFormEnsemble: GWAS-based transformer and integrated learning to analyze genetic data to identify significant SNP loci and biological pathways
 ![Python 3.8.18](https://img.shields.io/badge/python-3.8-green.svg?style=plastic)
 ![PyTorch 2.1.2](https://img.shields.io/badge/PyTorch%20-%23EE4C2C.svg?style=plastic)
 
@@ -14,7 +14,7 @@ This analysis process is mainly divided into three steps (the quality control of
 3.the third step is to do the analysis of the biological pathways based on the results of the second step.
 
 ## Representation of All Scenarios：This figure illustrates all possible scenarios. The representation format is as follows: for instance, AT1 represents A>T mutation with a count of 1.
-![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/117270c8-2e83-4505-a1c9-638004a0cebc)
+![image](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/7352a7d1-457a-4156-8021-e6d367c9ffe9)
 
 
 
