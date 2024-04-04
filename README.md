@@ -2,8 +2,9 @@
 ![Python 3.8.18](https://img.shields.io/badge/python-3.8-green.svg?style=plastic)
 ![PyTorch 2.1.2](https://img.shields.io/badge/PyTorch%20-%23EE4C2C.svg?style=plastic)
 
-![workflowa](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/b931a682-4276-4242-ac1b-6b92b86b9b95)
-![workflowb](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/0a2adc87-cd20-4d73-aa7d-ddb2f3cf544d)
+
+![workflowa](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/5a34e2e3-251b-4729-bf3e-0065c8f5a552)
+![workflowb](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/781effbb-1ff3-4ae5-a2ec-8d08682cd8ec)
 
 
 This analysis process is mainly divided into three steps (the quality control of the data must be completed before these three steps),
@@ -17,13 +18,13 @@ This analysis process is mainly divided into three steps (the quality control of
 
 
 ## Model Architecture of the Base Classifier：
-![base_model2](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/9cf23666-fbbb-409f-b36e-95598552821c)
+![base_model](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/432a83d9-0291-41b8-903a-1cb2904c635a)
 
 
 <br>The input consists of the genotype and the corresponding chromosomal position of each locus for the samples. The genotype input dimension is 40, which is expanded to 512 through word embedding. It is then combined with the transformed positional information and concatenated with a CLS token used for classification. The self-attention mechanism comprises 12 heads with an 8-layer structure. Subsequently, a fully connected layer of 512x2 is employed to generate binary classification probabilities (healthy individuals or patients).<br/>
 
 ## Model Architecture of the Meta-Model:
-![meta_model](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/b0258baf-f7fd-4757-be58-639cd90c2f87)
+![meta_model](https://github.com/xuanan-zhu/GWAS_transformer/assets/84304647/6616c534-bec2-4d71-824b-6398e16b0163)
 
 
 <br>CLS represents the output CLS token from the preceding layer of the fully connected layer in the base classifier. It is combined and inputted into a single layer of fully connected neurons to produce binary classification probabilities(healthy individuals or patients).<br/>
