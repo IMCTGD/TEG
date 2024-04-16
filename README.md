@@ -40,7 +40,15 @@ This analysis process is mainly divided into three steps (the quality control of
 - scipy==1.12.0
 - torch==2.1.2+cu118
 - tqdm==4.66.1
-- visualizer==0.0.10
+
+- # Usage example
+`python transformer_base_model_main.py --chr_num 1 --datasetX 0` # Train base classifiers chromosome by chromosome and sample set by sample set
+`python base_model_vision.py --chr_num 1 --datasetX 0` # Calculate the self-attention score matrix and generate a CSV file.
+`python read_atten_matix.py --chr_num 1 --p_value 0.0001` # Aggregate the four self-attention matrices for each chromosome (four-fold cross-validation) to obtain significant SNP loci.
+`python read_atten_matix.py --chr_num 1 --p_value 0.0001` # Aggregate the four self-attention matrices for each chromosome (four-fold cross-validation) to obtain significant SNP loci.
+`python main_MetaClassify.py --datasetX 1 --num_experts [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]` # Select base classifiers to construct the meta-model.
+
+
 
 Dependencies can be installed using the following command:
 ```bash
