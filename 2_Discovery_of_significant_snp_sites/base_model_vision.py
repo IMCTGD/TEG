@@ -1,13 +1,20 @@
 import numpy as np
 import torch
 from visualizer import get_local
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from tqdm import tqdm
+import argparse
+
 get_local.activate()
 
 
 from model.gwas_transformer_base_model import clsDNA , get_pos_embedding
 from data_loader_tools import data_xy_transform_to_tensor, data_pos_transform_to_tensor, createSSSDataset
+
+parser = argparse.ArgumentParser(description='base_model_vision')
+parser.add_argument('--chr_num', type=int, default='1')
+parser.add_argument('--datasetX', type=int, default='0')
+args = parser.parse_args()
 
 def all_layers_heads_ave(attention_maps):
     average_head_att_map = []
@@ -35,8 +42,9 @@ device = 'cuda:6' if torch.cuda.is_available() else 'cpu'
 print("now using device:",device)
 
 # 2. Selection of chromosomes and data sets
-chr_num = 22
-datasetX = 3
+chr_num = args.chr_num
+datasetX = args.datasetX
+
 print("datasetX:",datasetX)
 
 # 3. Load the checkpoint file
@@ -85,7 +93,7 @@ with torch.no_grad():
     print("accuracy:",correct/sample_num)
     fined_ave_attn_weight = ave_attn_weights/sample_num
     np.savetxt('./matrix_snp/matrix{}-{}.csv'.format(chr_num,datasetX), fined_ave_attn_weight, delimiter=',')
-    plt.imshow(fined_ave_attn_weight, cmap='viridis')  # cmap parameter sets the color mapping, 'viridis' is a common color mapping
-    plt.colorbar()  # Add a color bar to show how the values correspond to the colors
-    plt.title('Heatmap')  # Add title
-    plt.show()
+    # plt.imshow(fined_ave_attn_weight, cmap='viridis')  # cmap parameter sets the color mapping, 'viridis' is a common color mapping
+    # plt.colorbar()  # Add a color bar to show how the values correspond to the colors
+    # plt.title('Heatmap')  # Add title
+    # plt.show()

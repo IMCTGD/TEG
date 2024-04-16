@@ -5,6 +5,8 @@ from scipy import stats
 
 from statistics import mean, stdev
 
+import argparse
+
 def list_std(list_data):
     mean_values = mean(list_data)
     std_devs = stdev(list_data)
@@ -13,9 +15,13 @@ def list_std(list_data):
     return list_data
 
 
+parser = argparse.ArgumentParser(description='read_atten_matix')
+parser.add_argument('--chr_num', type=int, default='1')
+parser.add_argument('--p_value', type=float, default='0.0001')
+args = parser.parse_args()
 
 # take a chromosome number
-chr = 22
+chr = args.chr_num
 print("chr:", chr)
 
 
@@ -37,12 +43,15 @@ cls_attn = [sum(items) for items in zip(*cls_attn_list)]
 
 
 # Use the normal distribution to inscribe
-z_scores = stats.norm.ppf(q=1 - 0.0001, loc=np.mean(cls_attn), scale=np.std(cls_attn))
+# z_scores = stats.norm.ppf(q=1 - 0.0001, loc=np.mean(cls_attn), scale=np.std(cls_attn))
 # z_scores = stats.norm.ppf(q=1 - 0.05, loc=np.mean(cls_attn), scale=np.std(cls_attn))
+
+z_scores = stats.norm.ppf(q=1 - args.p_value, loc=np.mean(cls_attn), scale=np.std(cls_attn))
 
 significant_positions = np.where(cls_attn > z_scores)[0]
 significant_num = len(significant_positions)
 print("The total number of significant loci is",significant_num)
+print("p_value <", args.p_value)
 
 fig = plt.figure(figsize=(12, 4))
 

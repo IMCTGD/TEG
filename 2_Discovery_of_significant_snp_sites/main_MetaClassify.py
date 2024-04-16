@@ -1,8 +1,10 @@
+import argparse
+import json
 import os
 import time
 
 import torch.nn as nn
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 from torch import optim
 
 from data_loader_tools import *
@@ -35,12 +37,16 @@ class MetaClassifier(nn.Module):
         output = self.meta_classifier(meta_input)
         return output
 
+parser = argparse.ArgumentParser(description='read_atten_matix')
+parser.add_argument('--datasetX', type=int, default='0')
+parser.add_argument('--num_experts', type=json.loads, default='[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]')
 
+args = parser.parse_args()
 
 seed=1
 torch.manual_seed(seed)
 np.random.seed(seed)
-device = 'cuda:2' if torch.cuda.is_available() else 'cpu'
+device = 'cuda:1' if torch.cuda.is_available() else 'cpu'
 print("now using device:",device)
 
 def dataloader_pos(chr_pos, chr_num):
@@ -66,10 +72,11 @@ from model.gwas_transformer_base_model import get_pos_embedding
 from model.gwas_transformer_base_model import clsDNA
 
 
-datasetX = 0
+datasetX = args.datasetX
 
 # num_experts = [1,2]
-num_experts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+# num_experts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+num_experts = args.num_experts
 
 print("Execution-based classifiers:", num_experts)
 print("datasetX:",datasetX)
@@ -317,23 +324,23 @@ if __name__ == '__main__':
     test_acc, test_f1, test_auc = test()
     print(meta_classifier.gates)
 
-    plt.figure(figsize=(12, 8))
-    plt.subplot(2, 2, 1)
-    plt.plot(list_trainloss, label='Train Loss')
-    plt.plot(list_loss, label='Val Loss')
-    plt.legend()
-
-    plt.subplot(2, 2, 2)
-    plt.plot(list_acc, label='Val Acc')
-    plt.legend()
-
-    plt.subplot(2, 2, 3)
-    plt.plot(list_f1, label='F1_score')
-    plt.legend()
-
-    plt.subplot(2, 2, 4)
-    plt.plot(list_AUC, label='AUC')
-    plt.legend()
-
-    plt.show()
+    # plt.figure(figsize=(12, 8))
+    # plt.subplot(2, 2, 1)
+    # plt.plot(list_trainloss, label='Train Loss')
+    # plt.plot(list_loss, label='Val Loss')
+    # plt.legend()
+    #
+    # plt.subplot(2, 2, 2)
+    # plt.plot(list_acc, label='Val Acc')
+    # plt.legend()
+    #
+    # plt.subplot(2, 2, 3)
+    # plt.plot(list_f1, label='F1_score')
+    # plt.legend()
+    #
+    # plt.subplot(2, 2, 4)
+    # plt.plot(list_AUC, label='AUC')
+    # plt.legend()
+    #
+    # plt.show()
 

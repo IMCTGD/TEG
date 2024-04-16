@@ -20,11 +20,14 @@ parser.add_argument('--opt', default="adam") # sgd adam adamW
 parser.add_argument('--net', default='clsDNA')
 parser.add_argument('--bs', default='512')
 parser.add_argument('--n_epochs', type=int, default='300')
+parser.add_argument('--chr_num', type=int, default='1')
+parser.add_argument('--datasetX', type=int, default='0')
 
 args = parser.parse_args()
 
 seed=1
-
+chr_num = args.chr_num
+datasetX = args.datasetX
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
@@ -40,8 +43,7 @@ print('==> Preparing data..')
 
 data = np.loadtxt('./data/genetype_f_2_2816.txt', delimiter=' ', dtype=str)
 
-chr_num = 22
-datasetX = 0
+
 
 print("Now training the chromosomes：", chr_num)
 print("Now datasetx:",datasetX)
