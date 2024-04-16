@@ -96,7 +96,7 @@ if use_lr_low:
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, args.n_epochs, last_epoch=-1)
 
 ##### Training
-# 混合精度
+# Mixing accuracy
 scaler = torch.cuda.amp.GradScaler(enabled=False)
 
 
@@ -122,8 +122,8 @@ def train(epoch):
         total += targets.size(0)
         correct += predicted.eq(targets).sum().item()
 
-    print("训练集准确率：", 100. * correct / total)
-    print("训练集Loss: ", train_loss / (batch_idx + 1))
+    print("Training set accuracy:", 100. * correct / total)
+    print("Training set Loss: ", train_loss / (batch_idx + 1))
     return train_loss / (batch_idx + 1)
 
 from sklearn.metrics import f1_score
@@ -147,13 +147,13 @@ def Val():
             inputs, targets = inputs.to(device), targets.to(device)
             outputs, _ = net(inputs, pos_data)
 
-            # 计算F1
+            # Calculate F1
             prob = outputs.cpu()
             labels = targets.cpu()
             prob = prob.numpy()  # Convert prob to CPU first, then to numpy, you don't need to convert to CPU first if you train on CPU itself
             prob_all.extend(np.argmax(prob, axis=1))  # Find the maximum index of each row
             label_all.extend(labels)
-            # 计算AUC
+            # Calculate AUC
             prob_all_AUC.extend(prob[:, 1])  # prob[:,1] return to the second column of each row of the number, according to the parameters of the function can be seen, y_score represents the score of the larger label class, and therefore is the maximum index corresponding to the value of that value, rather than the maximum index value
             loss = criterion(outputs, targets)
 
@@ -163,7 +163,7 @@ def Val():
             correct += predicted.eq(targets).sum().item()
 
 
-    #打印F1-score
+    #print F1-score
     f1 = f1_score(label_all, prob_all)
     AUC = roc_auc_score(label_all, prob_all_AUC)
     print("F1-Score:{:.4f}".format(f1))
@@ -186,7 +186,7 @@ def Val():
                  "scaler": scaler.state_dict()}
         if not os.path.isdir('checkpoint'):
             os.mkdir('checkpoint')
-        # torch.save(state, './checkpoint/ADNI_model/chr{}/'.format(chr_num) + args.net + 'dataset-{}-ckpt.t_high_auc_model'.format(datasetX))
+        torch.save(state, './checkpoint/ADNI_model/chr{}/'.format(chr_num) + args.net + 'dataset-{}-ckpt.t_high_auc_model'.format(datasetX))
         high_auc = AUC
 
     # Save checkpoint.

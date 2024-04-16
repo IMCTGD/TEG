@@ -84,7 +84,7 @@ with torch.no_grad():
 
     print("accuracy:",correct/sample_num)
     fined_ave_attn_weight = ave_attn_weights/sample_num
-    # np.savetxt('./matrix_snp_PD/matrix{}-{}.csv'.format(chr_num,datasetX), fined_ave_attn_weight, delimiter=',')
+    np.savetxt('./matrix_snp/matrix{}-{}.csv'.format(chr_num,datasetX), fined_ave_attn_weight, delimiter=',')
     plt.imshow(fined_ave_attn_weight, cmap='viridis')  # cmap parameter sets the color mapping, 'viridis' is a common color mapping
     plt.colorbar()  # Add a color bar to show how the values correspond to the colors
     plt.title('Heatmap')  # Add title

@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 读取 CSV 文件
 from scipy import stats
 
 from statistics import mean, stdev

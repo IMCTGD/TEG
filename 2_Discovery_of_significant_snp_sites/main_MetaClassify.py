@@ -17,7 +17,7 @@ class MetaClassifier(nn.Module):
             nn.LayerNorm(num_experts * expert_feature_size),
             nn.Linear(num_experts * expert_feature_size, 2)
         )
-        # 加入门控层
+        # Addition of a gating factor
         if auto_gate:
             self.gates = nn.Parameter(torch.ones(num_experts) / num_experts)
         else:
@@ -269,13 +269,13 @@ def test():
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
 
-            # 计算F1
+            # Calculate F1
             prob = outputs.cpu()
             labels = targets.cpu()
             prob = prob.numpy()
             prob_all.extend(np.argmax(prob, axis=1))
             label_all.extend(labels)
-            # 计算AUC
+            # Calculate AUC
             prob_all_AUC.extend(prob[:, 1])
 
     f1 = f1_score(label_all, prob_all)
@@ -310,7 +310,7 @@ if __name__ == '__main__':
     print("-----------------------------------------")
     print("training finished!")
     print("-----------------------------------------")
-    # 加载 best checkpoint 文件
+    # Loading the Best Checkpoints file
     print("loading best auc model...")
     checkpoint = torch.load('./checkpoint/meta_classifier/' + "meta_classifier" + 'ckpt.-{}-best_auc_model'.format(datasetX))
     meta_classifier.load_state_dict(checkpoint['model'])
