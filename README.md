@@ -43,6 +43,7 @@ This analysis process is mainly divided into three steps (the quality control of
 
 - # Usage example
 - Train base classifiers chromosome by chromosome and sample set by sample set.
+  
 `python transformer_base_model_main.py --chr_num 1 --datasetX 0` 
 
 `python base_model_vision.py --chr_num 1 --datasetX 0` # Calculate the self-attention score matrix and generate a CSV file.
