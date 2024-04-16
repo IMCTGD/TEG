@@ -41,6 +41,11 @@ This analysis process is mainly divided into three steps (the quality control of
 - torch==2.1.2+cu118
 - tqdm==4.66.1
 
+Dependencies can be installed using the following command:
+```bash
+pip install -r requirements.txt
+```
+
 - # Usage example
 #Train base classifiers chromosome by chromosome and sample set by sample set.
   
@@ -61,7 +66,4 @@ This analysis process is mainly divided into three steps (the quality control of
 
 
 
-Dependencies can be installed using the following command:
-```bash
-pip install -r requirements.txt
-```
+
