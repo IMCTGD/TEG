@@ -1,4 +1,4 @@
-# GWATransFormEnsemble: GWAS-based transformer and integrated learning to analyze genetic data to identify significant SNP loci and biological pathways
+# TEG: Discovery of Single Nucleotide Polymorphisms for Complex Genetic Diseases from Small Datasets of Individual Genotype Profiles Using a Transformer Ensemble Model
 ![Python 3.8.18](https://img.shields.io/badge/python-3.8-green.svg?style=plastic)
 ![PyTorch 2.1.2](https://img.shields.io/badge/PyTorch%20-%23EE4C2C.svg?style=plastic)
 
